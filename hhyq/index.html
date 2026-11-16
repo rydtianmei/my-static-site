@@ -1,0 +1,2473 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="30 道友情情境题，测一测你是《后会友期》里的谁。">
+  <title>测一测｜你是《后会友期》里的谁？</title>
+  <style>
+    :root {
+      --cream: #f8f3e9;
+      --cream-deep: #eee6d8;
+      --paper: #fffdf8;
+      --ink: #263641;
+      --ink-soft: #53636e;
+      --ink-faint: #849099;
+      --sky: #c8d9e6;
+      --sky-deep: #91afc5;
+      --blue: #68869e;
+      --blue-dark: #425f75;
+      --lilac: #b8afd0;
+      --lilac-soft: #e9e4f1;
+      --gold: #c69a58;
+      --gold-soft: #eedcc1;
+      --line: rgba(38, 54, 65, 0.14);
+      --line-strong: rgba(38, 54, 65, 0.25);
+      --shadow: 0 28px 80px rgba(60, 72, 82, 0.13);
+      --serif: "Songti SC", "STSong", "Noto Serif CJK SC", "SimSun", serif;
+      --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        linear-gradient(150deg, rgba(255, 255, 255, 0.46), transparent 46%),
+        var(--cream);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      content: "";
+      opacity: 0.3;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+
+    button, input { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+
+    button:focus-visible {
+      outline: 3px solid rgba(104, 134, 158, 0.35);
+      outline-offset: 4px;
+    }
+
+    [hidden] { display: none !important; }
+
+    .screen { min-height: 100svh; }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1240px, calc(100% - 64px));
+      min-height: 82px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wordmark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--serif);
+      font-size: 15px;
+      letter-spacing: 0.1em;
+    }
+
+    .wordmark-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid var(--blue);
+      border-radius: 50%;
+      color: var(--blue-dark);
+      font-size: 16px;
+    }
+
+    .top-chip {
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink-faint);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+    }
+
+    .primary-button,
+    .ghost-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 52px;
+      padding: 0 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, border-color 180ms ease, opacity 180ms ease;
+    }
+
+    .primary-button {
+      border: 1px solid var(--ink);
+      color: #fffdf8;
+      background: var(--ink);
+      box-shadow: 0 12px 30px rgba(38, 54, 65, 0.16);
+    }
+
+    .primary-button:hover:not(:disabled) {
+      background: #344a58;
+      transform: translateY(-2px);
+    }
+
+    .primary-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.34;
+      box-shadow: none;
+    }
+
+    .ghost-button {
+      border: 1px solid var(--line-strong);
+      color: var(--ink-soft);
+      background: rgba(255, 253, 248, 0.5);
+    }
+
+    .ghost-button:hover {
+      border-color: var(--blue);
+      color: var(--blue-dark);
+      background: var(--paper);
+    }
+
+    .arrow {
+      position: relative;
+      width: 18px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .arrow::after {
+      position: absolute;
+      top: -4px;
+      right: 0;
+      width: 8px;
+      height: 8px;
+      border-top: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+      content: "";
+      transform: rotate(45deg);
+    }
+
+    .home-screen { display: flex; flex-direction: column; }
+
+    .home-main {
+      display: grid;
+      flex: 1;
+      grid-template-columns: minmax(0, 1.02fr) minmax(370px, 0.98fr);
+      align-items: center;
+      gap: clamp(36px, 7vw, 96px);
+      width: min(1240px, calc(100% - 64px));
+      margin: 0 auto;
+      padding: 46px 0 34px;
+    }
+
+    .home-copy { position: relative; z-index: 2; }
+
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 20px;
+      color: var(--blue-dark);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+    }
+
+    .kicker::before {
+      width: 34px;
+      height: 1px;
+      content: "";
+      background: currentColor;
+    }
+
+    .hero-title {
+      max-width: 10.5em;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(46px, 4.8vw, 66px);
+      font-weight: 500;
+      line-height: 1.14;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .title-line { display: block; }
+
+    .hero-title .show-name { color: var(--blue-dark); }
+
+    .hero-subtitle {
+      max-width: 28em;
+      margin: 24px 0 0;
+      color: var(--ink-soft);
+      font-family: var(--serif);
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.7;
+    }
+
+    .hero-description {
+      max-width: 34em;
+      margin: 16px 0 0;
+      color: var(--ink-faint);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .hero-action {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px 22px;
+      margin-top: 32px;
+    }
+
+    .hero-meta {
+      color: var(--ink-faint);
+      font-size: 11px;
+      line-height: 1.75;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-meta strong {
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    .journey-visual {
+      position: relative;
+      width: min(100%, 570px);
+      aspect-ratio: 1.03;
+      justify-self: end;
+    }
+
+    .journey-visual svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      filter: drop-shadow(0 22px 38px rgba(76, 99, 116, 0.12));
+    }
+
+    .art-label {
+      position: absolute;
+      padding: 8px 12px;
+      border: 1px solid rgba(38, 54, 65, 0.16);
+      border-radius: 3px;
+      color: var(--ink-soft);
+      background: rgba(255, 253, 248, 0.88);
+      font-family: var(--serif);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      box-shadow: 0 8px 22px rgba(64, 77, 87, 0.09);
+    }
+
+    .art-label-one {
+      top: 9%;
+      left: 2%;
+      transform: rotate(-5deg);
+    }
+
+    .art-label-two {
+      right: 1%;
+      bottom: 10%;
+      transform: rotate(4deg);
+    }
+
+    .motif-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      width: min(1240px, calc(100% - 64px));
+      margin: 0 auto;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .motif-item {
+      min-height: 94px;
+      padding: 20px 22px;
+      border-right: 1px solid var(--line);
+    }
+
+    .motif-item:last-child { border-right: 0; }
+
+    .motif-item span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 12px;
+    }
+
+    .motif-item strong {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .home-footer {
+      width: min(1240px, calc(100% - 64px));
+      margin: 0 auto;
+      padding: 18px 0 22px;
+      color: var(--ink-faint);
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .quiz-screen { background: linear-gradient(180deg, rgba(255, 253, 248, 0.5), transparent 42%); }
+
+    .quiz-header,
+    .result-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1120px, calc(100% - 64px));
+      min-height: 78px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .progress-count {
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+      color: var(--ink-faint);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    .progress-count strong {
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 500;
+    }
+
+    .progress-track {
+      position: relative;
+      width: min(1120px, calc(100% - 64px));
+      height: 3px;
+      margin: 0 auto;
+      overflow: hidden;
+      background: rgba(38, 54, 65, 0.09);
+    }
+
+    .progress-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 3.333%;
+      background: linear-gradient(90deg, var(--sky-deep), var(--lilac), var(--gold));
+      transition: width 320ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .quiz-layout {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 760px);
+      justify-content: center;
+      gap: clamp(44px, 8vw, 108px);
+      width: min(1120px, calc(100% - 64px));
+      margin: 0 auto;
+      padding: 52px 0 66px;
+    }
+
+    .route-aside {
+      padding-top: 8px;
+      border-right: 1px solid var(--line);
+    }
+
+    .route-kicker {
+      margin: 0 0 18px;
+      color: var(--blue-dark);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+    }
+
+    .route-stop {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 62px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .route-stop span {
+      color: var(--ink-faint);
+      font-family: var(--sans);
+      font-size: 11px;
+    }
+
+    .route-quote {
+      max-width: 12em;
+      margin: 34px 28px 0 0;
+      color: var(--ink-soft);
+      font-family: var(--serif);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .route-line {
+      display: grid;
+      gap: 7px;
+      margin: 28px 30px 0 0;
+    }
+
+    .route-dot {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink-faint);
+      font-size: 9px;
+    }
+
+    .route-dot::before {
+      width: 5px;
+      height: 5px;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      content: "";
+    }
+
+    .question-card {
+      position: relative;
+      padding: clamp(26px, 4vw, 44px);
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: rgba(255, 253, 248, 0.82);
+      box-shadow: 0 20px 60px rgba(57, 72, 84, 0.09);
+    }
+
+    .question-card::before {
+      position: absolute;
+      top: 13px;
+      left: 13px;
+      width: 32px;
+      height: 32px;
+      border-top: 1px solid rgba(198, 154, 88, 0.48);
+      border-left: 1px solid rgba(198, 154, 88, 0.48);
+      content: "";
+    }
+
+    .question-card.swap { animation: cardIn 320ms cubic-bezier(0.22, 1, 0.36, 1); }
+
+    .question-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--ink-faint);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+    }
+
+    .question-meta span:first-child { color: var(--blue-dark); }
+
+    .question-title {
+      min-height: 2.8em;
+      margin: 22px 0 0;
+      font-family: var(--serif);
+      font-size: clamp(27px, 3.3vw, 40px);
+      font-weight: 500;
+      line-height: 1.5;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .options {
+      display: grid;
+      gap: 11px;
+      margin-top: 30px;
+    }
+
+    .option-button {
+      display: grid;
+      grid-template-columns: 31px minmax(0, 1fr) 20px;
+      align-items: center;
+      gap: 13px;
+      width: 100%;
+      min-height: 65px;
+      padding: 13px 16px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.48);
+      text-align: left;
+      cursor: pointer;
+      transition: transform 160ms ease, background-color 160ms ease, color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .option-button:hover {
+      border-color: rgba(104, 134, 158, 0.58);
+      background: var(--paper);
+      box-shadow: 0 10px 25px rgba(64, 80, 93, 0.08);
+      transform: translateX(4px);
+    }
+
+    .option-letter {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--ink-faint);
+      font-family: var(--serif);
+      font-size: 12px;
+    }
+
+    .option-text {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .option-check {
+      position: relative;
+      width: 17px;
+      height: 17px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+    }
+
+    .option-check::after {
+      position: absolute;
+      top: 3px;
+      left: 5px;
+      width: 4px;
+      height: 7px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      content: "";
+      opacity: 0;
+      transform: rotate(45deg);
+    }
+
+    .option-button.is-selected {
+      color: #fffdf8;
+      border-color: var(--blue-dark);
+      background: var(--blue-dark);
+      box-shadow: 0 14px 34px rgba(66, 95, 117, 0.18);
+    }
+
+    .option-button.is-selected .option-letter {
+      border-color: rgba(255, 253, 248, 0.36);
+      color: #fffdf8;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .option-button.is-selected .option-check {
+      border-color: var(--paper);
+      color: var(--blue-dark);
+      background: var(--paper);
+    }
+
+    .option-button.is-selected .option-check::after { opacity: 1; }
+
+    .question-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .question-actions .primary-button,
+    .question-actions .ghost-button { min-width: 132px; }
+
+    .question-hint {
+      color: var(--ink-faint);
+      font-size: 10px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    .result-screen {
+      background:
+        linear-gradient(180deg, rgba(200, 217, 230, 0.24), transparent 330px),
+        var(--cream);
+    }
+
+    .result-status {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--blue-dark);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+    }
+
+    .result-status::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      content: "";
+      background: var(--gold);
+      box-shadow: 0 0 0 5px rgba(198, 154, 88, 0.12);
+    }
+
+    .result-wrap {
+      width: min(960px, calc(100% - 64px));
+      margin: 0 auto;
+      padding: 42px 0 70px;
+    }
+
+    .result-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .result-card::before {
+      position: absolute;
+      top: -120px;
+      right: -100px;
+      width: 330px;
+      height: 330px;
+      border: 1px solid rgba(198, 154, 88, 0.18);
+      border-radius: 50%;
+      content: "";
+      box-shadow:
+        0 0 0 34px rgba(198, 154, 88, 0.03),
+        0 0 0 74px rgba(104, 134, 158, 0.025);
+    }
+
+    .result-hero {
+      display: grid;
+      grid-template-columns: 340px minmax(0, 1fr);
+      gap: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .portrait-panel {
+      position: relative;
+      min-height: 430px;
+      padding: 22px;
+      background: var(--lilac-soft);
+    }
+
+    .portrait-art {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .portrait-art svg { width: 100%; height: 100%; }
+
+    .portrait-caption {
+      position: absolute;
+      right: 18px;
+      bottom: 16px;
+      left: 18px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      color: rgba(38, 54, 65, 0.68);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+    }
+
+    .portrait-stamp {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      border: 1px solid rgba(38, 54, 65, 0.5);
+      color: var(--ink-soft);
+      font-family: var(--serif);
+      font-size: 23px;
+      transform: rotate(-5deg);
+    }
+
+    .result-intro {
+      position: relative;
+      padding: 42px 44px 38px;
+    }
+
+    .result-file {
+      margin: 0 0 15px;
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+    }
+
+    .result-title {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(36px, 4.8vw, 58px);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .result-title span { color: var(--blue-dark); }
+
+    .result-keyword {
+      margin: 14px 0 0;
+      color: var(--ink-soft);
+      font-family: var(--serif);
+      font-size: 18px;
+    }
+
+    .result-identity {
+      margin: 20px 0 0;
+      color: var(--ink-soft);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .result-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 22px;
+    }
+
+    .result-tag {
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink-faint);
+      background: var(--cream);
+      font-size: 10px;
+    }
+
+    .match-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      color: var(--ink-faint);
+      font-size: 10px;
+    }
+
+    .match-line strong {
+      color: var(--blue-dark);
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .result-sections { padding: 0 44px; }
+
+    .result-section {
+      display: grid;
+      grid-template-columns: 38px minmax(0, 1fr);
+      gap: 16px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-number {
+      padding-top: 3px;
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 13px;
+    }
+
+    .result-section h2 {
+      margin: 0 0 12px;
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .result-section p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 14px;
+      line-height: 1.95;
+    }
+
+    .hidden-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .hidden-cell {
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: var(--cream);
+    }
+
+    .hidden-cell span {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--ink-faint);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+    }
+
+    .hidden-cell strong {
+      color: var(--ink-soft);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .echo-card {
+      margin: 24px 0 28px;
+      padding: 20px 22px;
+      border: 1px solid rgba(184, 175, 208, 0.7);
+      border-radius: 6px;
+      background: rgba(233, 228, 241, 0.54);
+    }
+
+    .echo-card-label {
+      margin: 0 0 8px;
+      color: #7f7397;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+    }
+
+    .echo-card h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .echo-card p {
+      margin: 8px 0 0;
+      color: var(--ink-soft);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .result-signature {
+      padding: 0 44px 34px;
+    }
+
+    .slogan-box {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 19px 21px;
+      border-left: 2px solid var(--gold);
+      background: var(--cream);
+    }
+
+    .slogan-box span {
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .slogan-box strong {
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.7;
+    }
+
+    .result-foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 16px;
+      color: var(--ink-faint);
+      font-size: 9px;
+      line-height: 1.7;
+    }
+
+    .result-foot span:last-child {
+      text-align: right;
+      letter-spacing: 0.08em;
+    }
+
+    .result-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: rgba(255, 253, 248, 0.66);
+    }
+
+    .toast {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 50;
+      max-width: min(360px, calc(100% - 44px));
+      padding: 13px 17px;
+      border-radius: 5px;
+      color: #fffdf8;
+      background: var(--ink);
+      box-shadow: 0 14px 40px rgba(38, 54, 65, 0.2);
+      font-size: 12px;
+      line-height: 1.6;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .screen.is-entering .reveal {
+      animation: riseIn 620ms both cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .screen.is-entering .reveal:nth-child(2) { animation-delay: 80ms; }
+    .screen.is-entering .reveal:nth-child(3) { animation-delay: 140ms; }
+    .screen.is-entering .reveal:nth-child(4) { animation-delay: 200ms; }
+
+    @media (max-width: 900px) {
+      .home-main { grid-template-columns: minmax(0, 1fr) 360px; gap: 28px; }
+      .quiz-layout { grid-template-columns: 150px minmax(0, 1fr); gap: 40px; }
+      .result-hero { grid-template-columns: 300px minmax(0, 1fr); }
+    }
+
+    @media (max-width: 760px) {
+      .topbar,
+      .quiz-header,
+      .result-header,
+      .progress-track,
+      .home-footer {
+        width: min(100% - 36px, 680px);
+      }
+
+      .topbar { min-height: 70px; }
+      .top-chip { display: none; }
+      .wordmark { font-size: 13px; }
+
+      .home-main {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: min(100% - 36px, 680px);
+        padding: 38px 0 28px;
+      }
+
+      .hero-title {
+        max-width: none;
+        font-size: clamp(36px, 10.2vw, 48px);
+        line-height: 1.17;
+      }
+
+      .hero-subtitle { margin-top: 20px; font-size: 18px; }
+      .hero-description { font-size: 13px; }
+      .hero-action { align-items: stretch; flex-direction: column; }
+      .hero-action .primary-button { width: 100%; }
+      .journey-visual { width: min(100%, 480px); margin: 4px auto 0; }
+
+      .motif-strip {
+        display: none;
+      }
+
+      .home-footer {
+        margin-top: auto;
+        padding: 16px 0 22px;
+      }
+
+      .quiz-layout {
+        display: block;
+        width: min(100% - 36px, 680px);
+        padding: 24px 0 40px;
+      }
+
+      .route-aside { display: none; }
+
+      .question-card {
+        padding: 28px 18px 20px;
+      }
+
+      .question-title {
+        min-height: 0;
+        margin-top: 17px;
+        font-size: clamp(25px, 7vw, 34px);
+      }
+
+      .options { margin-top: 24px; }
+
+      .option-button {
+        grid-template-columns: 29px minmax(0, 1fr) 18px;
+        min-height: 62px;
+        padding: 12px 13px;
+      }
+
+      .option-button:hover { transform: none; }
+      .option-text { font-size: 13px; }
+
+      .question-actions {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+      }
+
+      .question-actions .primary-button,
+      .question-actions .ghost-button {
+        width: 100%;
+        min-width: 0;
+        padding: 0 14px;
+      }
+
+      .question-hint { display: none; }
+
+      .result-wrap {
+        width: min(100% - 24px, 680px);
+        padding: 22px 0 36px;
+      }
+
+      .result-hero {
+        display: block;
+      }
+
+      .portrait-panel {
+        min-height: 330px;
+      }
+
+      .result-intro {
+        padding: 30px 22px 28px;
+      }
+
+      .result-title { font-size: clamp(35px, 10vw, 48px); }
+
+      .result-sections { padding: 0 22px; }
+
+      .result-section {
+        grid-template-columns: 29px minmax(0, 1fr);
+        gap: 10px;
+        padding: 24px 0;
+      }
+
+      .result-section h2 { font-size: 20px; }
+      .result-section p { font-size: 13px; }
+
+      .hidden-grid { grid-template-columns: 1fr; }
+
+      .result-signature { padding: 0 22px 26px; }
+
+      .slogan-box {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .slogan-box strong { font-size: 16px; }
+
+      .result-foot {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .result-foot span:last-child { text-align: left; }
+
+      .result-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .result-actions button { width: 100%; }
+    }
+
+    @media (max-width: 420px) {
+      .hero-title { font-size: clamp(34px, 9.2vw, 42px); }
+      .option-button { grid-template-columns: 28px minmax(0, 1fr); }
+      .option-check { display: none; }
+      .question-actions { grid-template-columns: 0.9fr 1.2fr; }
+      .question-actions button { font-size: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main id="app">
+    <section class="screen home-screen is-entering" id="homeScreen">
+      <header class="topbar">
+        <div class="wordmark">
+          <span class="wordmark-mark" aria-hidden="true">友</span>
+          <span>后会友期 · 友情旅程档案</span>
+        </div>
+        <span class="top-chip">趣味互动测试 · 非专业心理测评</span>
+      </header>
+
+      <div class="home-main">
+        <div class="home-copy">
+          <p class="kicker reveal">30 QUESTIONS · FRIENDSHIP JOURNEY</p>
+          <h1 class="hero-title reveal">
+            <span class="title-line">测一测｜</span>
+            <span class="title-line">你是<span class="show-name">《后会友期》</span></span>
+            <span class="title-line">里的谁？</span>
+          </h1>
+          <p class="hero-subtitle reveal">如果走进这场关于友情的旅程，你会成为谁？</p>
+          <p class="hero-description reveal">30 道趣味情境题，探索你的友情相处模式，解锁你的专属节目人物档案。不需要看过节目，也不需要记住嘉宾经历，凭第一反应选择就好。</p>
+          <div class="hero-action reveal">
+            <button class="primary-button" id="startButton" type="button">
+              开启友情测试
+              <span class="arrow" aria-hidden="true"></span>
+            </button>
+            <span class="hero-meta"><strong>30 道情境题</strong> · 约 4 分钟<br>可返回修改 · 可反复重测</span>
+          </div>
+        </div>
+
+        <div class="journey-visual reveal" aria-hidden="true">
+          <svg viewBox="0 0 620 600" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="heroSky" x1="0" y1="0" x2="0.7" y2="1">
+                <stop offset="0" stop-color="#e7eef4"/>
+                <stop offset="0.62" stop-color="#c6d9e7"/>
+                <stop offset="1" stop-color="#e8e2f2"/>
+              </linearGradient>
+              <linearGradient id="heroMountain" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#7c9bb1"/>
+                <stop offset="1" stop-color="#536f86"/>
+              </linearGradient>
+              <linearGradient id="heroGround" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#d8dee1"/>
+                <stop offset="1" stop-color="#ede8dc"/>
+              </linearGradient>
+            </defs>
+            <rect x="18" y="16" width="584" height="568" rx="8" fill="url(#heroSky)"/>
+            <circle cx="476" cy="112" r="52" fill="#f0d8aa" opacity="0.78"/>
+            <g fill="#fffdf8" opacity="0.9">
+              <circle cx="115" cy="82" r="2.2"/>
+              <circle cx="168" cy="128" r="1.5"/>
+              <circle cx="213" cy="63" r="1.8"/>
+              <circle cx="324" cy="91" r="1.4"/>
+              <circle cx="384" cy="58" r="2"/>
+              <circle cx="531" cy="75" r="1.5"/>
+              <circle cx="553" cy="164" r="2.1"/>
+            </g>
+            <g opacity="0.6" fill="#fffdf8">
+              <path d="M76 176c15-22 35-18 46-3 16-5 38 3 38 19H66c0-8 4-13 10-16Z"/>
+              <path d="M414 170c12-18 29-16 38-5 12-4 31 2 31 14h-81c0-5 5-9 12-9Z"/>
+            </g>
+            <path d="M18 420 135 252l72 96 82-160 125 223 57-82 131 130v57H18Z" fill="#9ab2c3" opacity="0.56"/>
+            <path d="M18 463 154 298l66 92 89-146 109 202 75-104 109 109v121H18Z" fill="url(#heroMountain)"/>
+            <path d="m154 298 32 45 33 47-33-15-20 26-21-44Z" fill="#f8fbfc" opacity="0.88"/>
+            <path d="m309 244 45 84 54 118-59-39-39 31-35-82Z" fill="#f8fbfc" opacity="0.92"/>
+            <path d="M18 480c93-28 160-14 223 17 97 48 185 26 359-29v101H18Z" fill="url(#heroGround)"/>
+            <path d="M86 565c71-73 109-91 163-93 49-2 89 24 118 57 22 25 47 40 76 48" fill="none" stroke="#fffdf8" stroke-width="12" stroke-linecap="round" opacity="0.9"/>
+            <path d="M86 565c71-73 109-91 163-93 49-2 89 24 118 57 22 25 47 40 76 48" fill="none" stroke="#b7c4ca" stroke-width="2" stroke-dasharray="8 10" stroke-linecap="round"/>
+            <g transform="translate(306 449)">
+              <rect x="0" y="0" width="147" height="65" rx="9" fill="#f9f4e7"/>
+              <rect x="18" y="12" width="21" height="21" rx="2" fill="#8fadc2"/>
+              <rect x="48" y="12" width="21" height="21" rx="2" fill="#b8afd0"/>
+              <rect x="78" y="12" width="21" height="21" rx="2" fill="#8fadc2"/>
+              <rect x="108" y="12" width="21" height="21" rx="2" fill="#b8afd0"/>
+              <circle cx="29" cy="58" r="11" fill="#425f75"/>
+              <circle cx="119" cy="58" r="11" fill="#425f75"/>
+              <path d="M142 28h19l10 17v12h-29Z" fill="#c69a58"/>
+              <path d="M0 48h147" stroke="#c69a58" stroke-width="2"/>
+            </g>
+            <path d="M280 514h223" stroke="#8c9ca5" stroke-width="2"/>
+            <g fill="#425f75">
+              <path d="M95 188c7-11 18-12 26-1-9 2-18 3-26 1Z"/>
+              <path d="M122 175c6-9 14-11 22-5-8 4-14 6-22 5Z"/>
+            </g>
+            <g transform="translate(82 82) rotate(-6)">
+              <rect width="112" height="72" rx="3" fill="#fffdf8" opacity="0.9"/>
+              <path d="M17 20h78M17 34h58M17 48h41" stroke="#9eb1bd" stroke-width="3" stroke-linecap="round"/>
+              <path d="M92 63c-8-8-4-19 7-20 11 1 15 12 7 20l-7 7Z" fill="#c69a58" opacity="0.7"/>
+            </g>
+          </svg>
+          <span class="art-label art-label-one">高原来信 · TO：旧友</span>
+          <span class="art-label art-label-two">第 30 站 ·  friendship line</span>
+        </div>
+      </div>
+
+      <div class="motif-strip" aria-hidden="true">
+        <div class="motif-item"><span>01 / ROUTE</span><strong>高原与雪山</strong></div>
+        <div class="motif-item"><span>02 / LETTER</span><strong>写给旧友的信</strong></div>
+        <div class="motif-item"><span>03 / TRAIN</span><strong>下一站再见面</strong></div>
+        <div class="motif-item"><span>04 / BOND</span><strong>友情没有标准答案</strong></div>
+      </div>
+
+      <footer class="home-footer">
+        本测试为趣味友情互动，不是专业心理测评。人物匹配仅基于公开节目呈现中的沟通气质做轻松联想，不对真实人物作心理诊断或事件推断。
+      </footer>
+    </section>
+
+    <section class="screen quiz-screen" id="quizScreen" hidden>
+      <header class="quiz-header">
+        <div class="wordmark">
+          <span class="wordmark-mark" aria-hidden="true">友</span>
+          <span>友情旅程档案</span>
+        </div>
+        <div class="progress-count">
+          <strong id="progressCurrent">01</strong>
+          <span>/ 30</span>
+          <span>沿途记录</span>
+        </div>
+      </header>
+      <div class="progress-track" aria-hidden="true"><span class="progress-fill" id="progressFill"></span></div>
+
+      <div class="quiz-layout">
+        <aside class="route-aside">
+          <p class="route-kicker">FRIENDSHIP ROUTE</p>
+          <p class="route-stop"><span id="routeCurrent">01</span><span> / 30</span></p>
+          <p class="route-quote">友情不是标准答案<br>是一次次看见彼此</p>
+          <div class="route-line" aria-hidden="true">
+            <span class="route-dot">出发</span>
+            <span class="route-dot">同行</span>
+            <span class="route-dot">理解</span>
+            <span class="route-dot">抵达</span>
+          </div>
+        </aside>
+
+        <article class="question-card" id="questionCard">
+          <div class="question-meta">
+            <span>沿途情境题</span>
+            <span id="questionCounter">第 1 题</span>
+          </div>
+          <h1 class="question-title" id="questionTitle"></h1>
+          <div class="options" id="options" role="group" aria-labelledby="questionTitle"></div>
+          <div class="question-actions">
+            <button class="ghost-button" id="previousButton" type="button">上一题</button>
+            <button class="primary-button" id="nextButton" type="button" disabled>
+              <span id="nextButtonLabel">下一题</span>
+              <span class="arrow" aria-hidden="true"></span>
+            </button>
+          </div>
+          <p class="question-hint">选择更接近第一反应的答案，没有好坏之分</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="screen result-screen" id="resultScreen" hidden>
+      <header class="result-header">
+        <div class="wordmark">
+          <span class="wordmark-mark" aria-hidden="true">友</span>
+          <span>后会友期 · 友情旅程档案</span>
+        </div>
+        <div class="result-status">人物档案已解锁</div>
+      </header>
+
+      <div class="result-wrap">
+        <article class="result-card" id="resultCard">
+          <div class="result-hero">
+            <div class="portrait-panel">
+              <div class="portrait-art" id="portraitArt"></div>
+              <div class="portrait-caption">
+                <span>ORIGINAL JOURNEY PORTRAIT</span>
+                <span class="portrait-stamp" id="portraitStamp">友</span>
+              </div>
+            </div>
+            <div class="result-intro">
+              <p class="result-file" id="resultFile">JOURNEY FILE · 01</p>
+              <h1 class="result-title">原来，你像<span id="resultName">张萌</span></h1>
+              <p class="result-keyword" id="resultKeyword">直球热场者</p>
+              <p class="result-identity" id="resultIdentity"></p>
+              <div class="result-tags" id="resultTags"></div>
+              <div class="match-line"><strong id="matchScore">92%</strong><span>友情频率相近</span></div>
+            </div>
+          </div>
+
+          <div class="result-sections">
+            <section class="result-section">
+              <div class="section-number">01</div>
+              <div>
+                <h2>为什么是你</h2>
+                <p id="whyText"></p>
+              </div>
+            </section>
+
+            <section class="result-section">
+              <div class="section-number">02</div>
+              <div>
+                <h2>你的友情隐藏属性</h2>
+                <p id="hiddenIntro"></p>
+                <div class="hidden-grid" id="hiddenGrid"></div>
+              </div>
+            </section>
+
+            <section class="result-section">
+              <div class="section-number">03</div>
+              <div>
+                <h2>你的专属友情签名</h2>
+                <div class="echo-card">
+                  <p class="echo-card-label">友情回声角色</p>
+                  <h3 id="echoName"></h3>
+                  <p id="echoDescription"></p>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="result-signature">
+            <div class="slogan-box">
+              <span>04 / SLOGAN</span>
+              <strong id="sloganText"></strong>
+            </div>
+            <div class="result-foot">
+              <span>趣味友情测试 · 非专业心理测评 · 结果仅用于娱乐与自我观察</span>
+              <span>后会友期 · 友情旅程档案</span>
+            </div>
+          </div>
+        </article>
+
+        <div class="result-actions">
+          <button class="ghost-button" id="restartButton" type="button">重新测试</button>
+          <button class="ghost-button" id="saveButton" type="button">保存结果图片</button>
+          <button class="primary-button" id="shareButton" type="button">分享给朋友</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <p class="sr-only" id="liveRegion" aria-live="polite"></p>
+
+  <script>
+    const DIMENSIONS = {
+      express: { label: "真诚表达", short: "表达", line: "有话愿意说清楚" },
+      empathy: { label: "共情体察", short: "共情", line: "能接住别人的情绪" },
+      steady: { label: "稳定陪伴", short: "陪伴", line: "关键时刻靠得住" },
+      boundary: { label: "边界自洽", short: "边界", line: "亲密也需要呼吸感" },
+      spark: { label: "气氛活力", short: "活力", line: "能把相处点亮" },
+      reflect: { label: "深度内省", short: "内省", line: "习惯先消化再表达" },
+      loyal: { label: "长久念旧", short: "长情", line: "会把重要的人留很久" },
+      adapt: { label: "变化适应", short: "适应", line: "允许关系自然流动" }
+    };
+
+    const D = {
+      express: "express",
+      empathy: "empathy",
+      steady: "steady",
+      boundary: "boundary",
+      spark: "spark",
+      reflect: "reflect",
+      loyal: "loyal",
+      adapt: "adapt"
+    };
+
+    const questions = [
+      {
+        q: "和朋友约好旅行，出发前一天对方临时改变计划。你第一反应是：",
+        a: [
+          ["直接问清原因，再一起重排方案", D.express, D.adapt],
+          ["先接受，但心里需要一点时间消化", D.reflect, D.boundary],
+          ["先关心对方是不是遇到了什么难处", D.empathy, D.steady],
+          ["顺势换个玩法，说不定更有意思", D.adapt, D.spark]
+        ]
+      },
+      {
+        q: "和很久没见的朋友重逢时，你更可能：",
+        a: [
+          ["先一个拥抱，直接说“真的很想你”", D.express, D.empathy],
+          ["表面淡定，回去以后偷偷开心很久", D.reflect, D.loyal],
+          ["先观察对方有没有变化，再慢慢靠近", D.boundary, D.reflect],
+          ["立刻提议去以前常去的地方坐坐", D.loyal, D.spark]
+        ]
+      },
+      {
+        q: "朋友说了一句让你不太舒服的话，你会：",
+        a: [
+          ["当场温和地问清楚，不想让误会长大", D.express, D.boundary],
+          ["先不说，之后找一个合适的时机聊", D.reflect, D.steady],
+          ["先想是不是自己太敏感，再慢慢消化", D.empathy, D.reflect],
+          ["用玩笑带过去，回家后再认真想", D.spark, D.boundary]
+        ]
+      },
+      {
+        q: "你更理想的友情距离是：",
+        a: [
+          ["随时能联系，也愿意分享很多细节", D.express, D.empathy],
+          ["不常联系，但彼此心里一直有位置", D.loyal, D.boundary],
+          ["平时各忙各的，需要时一定出现", D.steady, D.loyal],
+          ["各自自由，见面时依然很熟", D.adapt, D.boundary]
+        ]
+      },
+      {
+        q: "朋友情绪低落，却一直说自己“没事”。你会：",
+        a: [
+          ["安静陪在旁边，不急着逼问", D.empathy, D.steady],
+          ["先聊点轻松的，等对方自己准备好", D.spark, D.empathy],
+          ["直接告诉对方“你可以告诉我”", D.express, D.steady],
+          ["给对方空间，并说需要时随时找你", D.boundary, D.empathy]
+        ]
+      },
+      {
+        q: "旅行中，大家对一个安排意见不一。你通常会：",
+        a: [
+          ["把方案摆出来，推动大家做决定", D.express, D.steady],
+          ["先听每个人到底在意的点是什么", D.empathy, D.reflect],
+          ["主动调和，找一个大家都能接受的折中", D.adapt, D.empathy],
+          ["自己怎么都行，别伤和气就好", D.boundary, D.adapt]
+        ]
+      },
+      {
+        q: "你不小心忘了朋友的重要日子，会：",
+        a: [
+          ["立刻道歉，并认真补上一个安排", D.express, D.steady],
+          ["心里很愧疚，会花时间准备补偿", D.reflect, D.loyal],
+          ["先用轻松方式化解尴尬，再补救", D.spark, D.adapt],
+          ["先想怎么解释，才不让对方难过", D.empathy, D.reflect]
+        ]
+      },
+      {
+        q: "看到朋友发了一条情绪低落的动态，你会：",
+        a: [
+          ["私聊问一句：需要聊聊吗", D.empathy, D.express],
+          ["先点一个抱抱，等对方主动来找你", D.boundary, D.empathy],
+          ["直接约出来吃饭，把人带到热闹里", D.spark, D.steady],
+          ["默默记住，过几天再找机会关心", D.reflect, D.loyal]
+        ]
+      },
+      {
+        q: "当你发现朋友最近和另一个人更亲近时，你会：",
+        a: [
+          ["有一点在意，但会坦率表达自己的感受", D.express, D.boundary],
+          ["先观察自己的情绪，不急着下判断", D.reflect, D.empathy],
+          ["相信真正的友情不需要比较", D.steady, D.loyal],
+          ["顺其自然，每个人都可以有自己的圈子", D.adapt, D.boundary]
+        ]
+      },
+      {
+        q: "你更愿意怎样表达“我很在乎你”：",
+        a: [
+          ["直接说出来，不把重要的话藏着", D.express, D.empathy],
+          ["记得细节，默默照顾对方", D.loyal, D.steady],
+          ["制造惊喜，让这一天变得特别", D.spark, D.express],
+          ["在关键时刻站出来，不让对方一个人", D.steady, D.loyal]
+        ]
+      },
+      {
+        q: "期待很久的旅行突然下雨，你会：",
+        a: [
+          ["马上找室内替代方案，让行程继续", D.adapt, D.steady],
+          ["接受变化，干脆在雨里走一走", D.adapt, D.spark],
+          ["先担心大家失望，赶紧安抚情绪", D.empathy, D.steady],
+          ["找一家窗边的小店，坐着聊天也很好", D.reflect, D.empathy]
+        ]
+      },
+      {
+        q: "你偶然翻到朋友很多年前写给你的信，会：",
+        a: [
+          ["马上拍照发给对方，一起回忆", D.express, D.spark],
+          ["安静读完，一个人想很久", D.reflect, D.loyal],
+          ["好好收起来，偶尔再翻开", D.loyal, D.boundary],
+          ["约对方见面，聊聊这些年", D.empathy, D.spark]
+        ]
+      },
+      {
+        q: "一个朋友总是迟到，你更可能：",
+        a: [
+          ["直接约定规则，超过时间就先走", D.express, D.boundary],
+          ["嘴上不太介意，但心里会记着", D.reflect, D.loyal],
+          ["先担心对方是不是遇到了什么事", D.empathy, D.steady],
+          ["把以后的约见都改成更弹性的时间", D.adapt, D.boundary]
+        ]
+      },
+      {
+        q: "在陌生城市里迷路，你通常会：",
+        a: [
+          ["主动问路，快速找到方向", D.express, D.adapt],
+          ["先自己看地图，理清路线", D.reflect, D.boundary],
+          ["叫上朋友一起找，顺便当探险", D.empathy, D.spark],
+          ["觉得迷路也是旅行的一部分，慢慢走", D.spark, D.adapt]
+        ]
+      },
+      {
+        q: "朋友请你帮忙，但你这几天其实很忙。你会：",
+        a: [
+          ["直接说明自己能做和不能做的部分", D.boundary, D.express],
+          ["尽量挤一点时间，不想让对方失望", D.steady, D.loyal],
+          ["帮对方一起找更合适的解决办法", D.adapt, D.empathy],
+          ["先确认自己能不能做好，再答应", D.reflect, D.steady]
+        ]
+      },
+      {
+        q: "你更容易被哪种朋友吸引：",
+        a: [
+          ["真诚直接，有话就说清楚", D.express, D.steady],
+          ["温柔耐心，愿意认真听你说", D.empathy, D.reflect],
+          ["有趣会玩，总能带来新鲜感", D.spark, D.adapt],
+          ["有分寸、不黏人，相处很舒服", D.boundary, D.loyal]
+        ]
+      },
+      {
+        q: "一次旅行结束后，你最想带走的是：",
+        a: [
+          ["大家一起大笑的瞬间", D.spark, D.express],
+          ["一张每个人都笑得很自然的合照", D.loyal, D.empathy],
+          ["一封写给未来自己的信", D.reflect, D.loyal],
+          ["一个独自看过的安静风景", D.boundary, D.reflect]
+        ]
+      },
+      {
+        q: "朋友误解了你的意思，你更可能：",
+        a: [
+          ["马上解释清楚，不希望留下疙瘩", D.express, D.steady],
+          ["先给对方一点时间，也给自己一点时间", D.boundary, D.empathy],
+          ["把想说的话写下来，组织好再沟通", D.reflect, D.express],
+          ["相信真正懂你的人，最终会明白", D.loyal, D.boundary]
+        ]
+      },
+      {
+        q: "回看一段很长的友情，你最先想到：",
+        a: [
+          ["许多只有彼此知道的小事", D.loyal, D.empathy],
+          ["这些年里，我们各自发生了哪些变化", D.reflect, D.adapt],
+          ["想认真说一声谢谢", D.empathy, D.express],
+          ["能同行一段，本身就很珍贵", D.adapt, D.boundary]
+        ]
+      },
+      {
+        q: "朋友突然说“我最近想一个人待着”，你会：",
+        a: [
+          ["尊重空间，并告诉对方你一直在", D.boundary, D.steady],
+          ["会有点担心，但不会追问", D.empathy, D.reflect],
+          ["直接问是不是自己哪里做得不好", D.express, D.reflect],
+          ["转头发一条轻松的消息，等对方回来", D.spark, D.adapt]
+        ]
+      },
+      {
+        q: "你的社交电量见底时，通常会：",
+        a: [
+          ["直接说自己需要休息，不硬撑", D.express, D.boundary],
+          ["尽量撑到结束，回家再慢慢恢复", D.steady, D.reflect],
+          ["找一个安静的人一起待着", D.boundary, D.empathy],
+          ["换个轻松话题，把气氛继续接住", D.spark, D.adapt]
+        ]
+      },
+      {
+        q: "朋友做了一个你不太认同的选择，你会：",
+        a: [
+          ["坦白说出自己的担心，但不替对方决定", D.express, D.empathy],
+          ["尊重决定，只在对方需要时帮忙", D.boundary, D.steady],
+          ["先试着理解对方为什么这样选", D.empathy, D.reflect],
+          ["先陪着走一段，再一起看接下来怎么办", D.loyal, D.adapt]
+        ]
+      },
+      {
+        q: "你最想要的友情仪式感是：",
+        a: [
+          ["每年至少一起旅行一次", D.spark, D.adapt],
+          ["认真记住彼此的生日和小习惯", D.loyal, D.steady],
+          ["深夜有事时，可以随时打过去", D.empathy, D.express],
+          ["留一张手写明信片，写很久以后再看", D.reflect, D.loyal]
+        ]
+      },
+      {
+        q: "朋友要搬去很远的城市，你会：",
+        a: [
+          ["认真告别，并约定保持联系", D.express, D.loyal],
+          ["表面祝福，心里其实很舍不得", D.reflect, D.loyal],
+          ["开始研究以后怎么见面、怎么安排", D.adapt, D.steady],
+          ["相信真正的关系不怕距离", D.boundary, D.loyal]
+        ]
+      },
+      {
+        q: "一场旅行里，你通常是：",
+        a: [
+          ["做计划、推进安排的人", D.steady, D.express],
+          ["调节气氛、随时接梗的人", D.spark, D.adapt],
+          ["照顾大家情绪和需要的人", D.empathy, D.steady],
+          ["安静看风景、拍照记录的人", D.reflect, D.boundary]
+        ]
+      },
+      {
+        q: "你怎样消化自己的难过：",
+        a: [
+          ["找信任的人认真说一说", D.express, D.empathy],
+          ["自己安静待着，慢慢想明白", D.boundary, D.reflect],
+          ["出门走走，换个环境和视角", D.adapt, D.reflect],
+          ["和朋友做点开心的事，先把情绪缓一缓", D.spark, D.adapt]
+        ]
+      },
+      {
+        q: "朋友很久没有回消息，你会：",
+        a: [
+          ["直接问一句，是不是最近有事", D.express, D.empathy],
+          ["不催，等对方方便时再说", D.boundary, D.steady],
+          ["会忍不住想一会儿，担心关系变了", D.reflect, D.empathy],
+          ["自己继续忙，想起来再聊", D.adapt, D.boundary]
+        ]
+      },
+      {
+        q: "你理想中的友情更像：",
+        a: [
+          ["一间随时亮着灯的房子", D.steady, D.loyal],
+          ["一辆想走就走的列车", D.spark, D.adapt],
+          ["一封慢慢写完的信", D.reflect, D.loyal],
+          ["两座相邻但独立的雪山", D.boundary, D.steady]
+        ]
+      },
+      {
+        q: "久别重逢后，你发现彼此都变了不少。你会：",
+        a: [
+          ["直接把变化聊开，重新认识对方", D.express, D.adapt],
+          ["先找回熟悉的感觉，再慢慢靠近", D.empathy, D.loyal],
+          ["接受关系变成新的样子", D.adapt, D.boundary],
+          ["会有一点失落，但愿意慢慢消化", D.reflect, D.loyal]
+        ]
+      },
+      {
+        q: "一段友情对你来说，最重要的是：",
+        a: [
+          ["彼此都能真诚表达", D.express, D.empathy],
+          ["需要的时候，一直有人在", D.steady, D.loyal],
+          ["亲密之外，也保有各自空间", D.boundary, D.adapt],
+          ["一起创造很多值得记住的回忆", D.spark, D.loyal]
+        ]
+      }
+    ];
+
+    const scoringBaseline = Object.fromEntries(
+      Object.keys(DIMENSIONS).map((key) => [key, { mean: 0, variance: 0 }])
+    );
+
+    questions.forEach((question) => {
+      Object.keys(DIMENSIONS).forEach((key) => {
+        const values = question.a.map((option) => (
+          (option[1] === key ? 2 : 0) + (option[2] === key ? 1 : 0)
+        ));
+        const mean = values.reduce((sum, value) => sum + value, 0) / values.length;
+        const variance = values.reduce((sum, value) => sum + (value - mean) ** 2, 0) / values.length;
+        scoringBaseline[key].mean += mean;
+        scoringBaseline[key].variance += variance;
+      });
+    });
+
+    Object.keys(DIMENSIONS).forEach((key) => {
+      scoringBaseline[key].sd = Math.sqrt(scoringBaseline[key].variance);
+    });
+
+    const profiles = [
+      {
+        id: "zhangmeng",
+        main: true,
+        name: "张萌",
+        stamp: "萌",
+        file: "01",
+        keyword: "直球热场者",
+        accent: "#c58f63",
+        portraitVariant: "bob",
+        vector: { express: 0.24, empathy: 0.14, steady: 0.18, boundary: 0.08, spark: 0.14, reflect: 0.06, loyal: 0.10, adapt: 0.06 },
+        identity: "你被读到的，是张萌式的直爽与热心：关系里愿意主动推进，也愿意把关心直接说出来。",
+        why: "你不太喜欢让重要的话一直悬着。遇到在意的人，你会想办法靠近、确认，把气氛重新点亮。你给朋友的安心感，来自“有事真的会站出来”。",
+        hidden: {
+          keywords: ["主动靠近", "热心张罗", "不留悬念"],
+          skill: "把冷场变成重新熟悉的入口",
+          mode: "先开口、先行动，再在独处时慢慢消化",
+          label: "友情里的点火器"
+        },
+        slogan: "想见的人就去见，想说的话别放凉。"
+      },
+      {
+        id: "matianyu",
+        main: true,
+        name: "马天宇",
+        stamp: "马",
+        file: "02",
+        keyword: "温柔守候者",
+        accent: "#8fa9b8",
+        portraitVariant: "soft",
+        vector: { express: 0.05, empathy: 0.28, steady: 0.22, boundary: 0.08, spark: 0.04, reflect: 0.14, loyal: 0.12, adapt: 0.07 },
+        identity: "你像马天宇在公开互动中常呈现出的温柔体察感：不抢着定义关系，却会认真接住情绪。",
+        why: "你更擅长用陪伴而不是喧哗表达在乎。你会注意到别人没说出口的部分，也愿意给对方足够的时间。你不急着把人拉出情绪，而是先让对方知道，自己不是一个人。",
+        hidden: {
+          keywords: ["轻声接住", "细节照顾", "不强催"],
+          skill: "让沉默变得不尴尬",
+          mode: "先陪一会儿，再等对方主动打开",
+          label: "柔软的定心岛"
+        },
+        slogan: "不用急着好起来，我陪你待一会儿。"
+      },
+      {
+        id: "lina",
+        main: true,
+        name: "厉娜",
+        stamp: "娜",
+        file: "03",
+        keyword: "慢热长情者",
+        accent: "#7f8fa8",
+        portraitVariant: "bob",
+        vector: { express: 0.06, empathy: 0.10, steady: 0.14, boundary: 0.24, spark: 0.04, reflect: 0.20, loyal: 0.18, adapt: 0.04 },
+        identity: "你被读到的是厉娜式的慢热与分寸感：关系需要时间确认，但一旦放进心里，就会留很久。",
+        why: "你不是对所有人都立刻敞开。你先观察、感受，再决定靠近。你的长情不靠高频联系，而靠心里一直留着位置。表面平静，并不代表你不在意。",
+        hidden: {
+          keywords: ["慢热筛选", "安静长情", "边界清楚"],
+          skill: "把在意藏进很长的记性里",
+          mode: "表面平静，心里认真",
+          label: "安静的长期主义"
+        },
+        slogan: "我不常说永远，但会把你留很久。"
+      },
+      {
+        id: "xufei",
+        main: true,
+        name: "许飞",
+        stamp: "飞",
+        file: "04",
+        keyword: "真诚直感者",
+        accent: "#b78d72",
+        portraitVariant: "wave",
+        vector: { express: 0.26, empathy: 0.16, steady: 0.05, boundary: 0.10, spark: 0.10, reflect: 0.20, loyal: 0.08, adapt: 0.05 },
+        identity: "你像许飞在表达里呈现出的真诚与直感：重视心里那一下真实，也不愿用漂亮话盖过感受。",
+        why: "你对关系的真假很敏感。你能感受到敷衍，也愿意为真实承担一点不轻松。你的表达偶尔直接，但底色是认真。你在乎的不是场面多漂亮，而是彼此有没有真的说到心里。",
+        hidden: {
+          keywords: ["直觉敏锐", "表达真诚", "情绪诚实"],
+          skill: "听出一句话里没有说完的部分",
+          mode: "先感受，再用自己的方式说清楚",
+          label: "友情的真心探测器"
+        },
+        slogan: "关系可以不完美，但最好别失真。"
+      },
+      {
+        id: "wenjier",
+        main: true,
+        name: "文吉儿",
+        stamp: "吉",
+        file: "05",
+        keyword: "明亮行动派",
+        accent: "#d1a35f",
+        portraitVariant: "bright",
+        vector: { express: 0.20, empathy: 0.13, steady: 0.08, boundary: 0.06, spark: 0.28, reflect: 0.05, loyal: 0.07, adapt: 0.13 },
+        identity: "你像文吉儿所呈现出的明亮行动感：愿意把气氛带起来，也愿意带着大家往前走。",
+        why: "你不喜欢让关系卡在原地。比起反复猜，你更愿意发起一次见面、提出一个玩法，让相处重新流动起来。你的快乐不是独自热闹，而是把身边的人一起带进光亮里。",
+        hidden: {
+          keywords: ["气氛担当", "主动提议", "快乐执行"],
+          skill: "把低落转成下一次出发",
+          mode: "先热闹起来，再用行动把大家连在一起",
+          label: "旅程里的晴天担当"
+        },
+        slogan: "想见面就约，快乐不需要等一个完美时机。"
+      },
+      {
+        id: "wangzixuan",
+        main: true,
+        name: "王子璇",
+        stamp: "璇",
+        file: "06",
+        keyword: "细腻共情者",
+        accent: "#aa9bc1",
+        portraitVariant: "long",
+        vector: { express: 0.10, empathy: 0.24, steady: 0.14, boundary: 0.06, spark: 0.06, reflect: 0.16, loyal: 0.18, adapt: 0.06 },
+        identity: "你像王子璇在互动里呈现出的细腻与柔和：很会照顾氛围，也很容易感知别人的感受。",
+        why: "你常常先看见别人的需要，再处理自己的。你希望关系舒服、体面，也愿意为这份舒服多做一点。你不是没有自己的想法，只是习惯把话说得柔软，让彼此都有台阶。",
+        hidden: {
+          keywords: ["柔和体察", "情绪照顾", "细节记忆"],
+          skill: "让别人被看见而不觉得被冒犯",
+          mode: "先把气氛放软，再慢慢说出自己",
+          label: "人群里的柔光"
+        },
+        slogan: "温柔不是退让，是我认真对待关系的方式。"
+      },
+      {
+        id: "qingzhi",
+        main: true,
+        name: "青稚",
+        stamp: "青",
+        file: "07",
+        keyword: "安静观察者",
+        accent: "#77949a",
+        portraitVariant: "hood",
+        vector: { express: 0.04, empathy: 0.18, steady: 0.12, boundary: 0.24, spark: 0.04, reflect: 0.22, loyal: 0.10, adapt: 0.06 },
+        identity: "你像青稚所呈现出的安静与独立：不急着进入热闹中心，却会用自己的节奏认真参与。",
+        why: "你需要空间，也尊重别人的空间。你不靠频繁表达证明在乎，更相信舒服的距离和关键时刻的出现。你看起来安静，心里却一直有在认真观察和记住。",
+        hidden: {
+          keywords: ["安静观察", "边界清晰", "独立同行"],
+          skill: "在喧闹里看见真正需要的人",
+          mode: "不黏人，但需要时一定在",
+          label: "两座相邻的雪山"
+        },
+        slogan: "不必挤进热闹，我们也算并肩。"
+      },
+      {
+        id: "baixiaochun",
+        main: true,
+        name: "白小纯",
+        stamp: "白",
+        file: "08",
+        keyword: "自在远行者",
+        accent: "#89a9b7",
+        portraitVariant: "free",
+        vector: { express: 0.12, empathy: 0.10, steady: 0.06, boundary: 0.16, spark: 0.18, reflect: 0.06, loyal: 0.08, adapt: 0.24 },
+        identity: "你像白小纯呈现出的松弛与自在：对关系保持开放，也愿意接受人和人之间自然的变化。",
+        why: "你不喜欢把友情变成任务。你相信舒服的关系可以隔着距离存在，也愿意在重逢时重新认识彼此。你不执着于关系永远保持同一种样子，更在意每一次见面是否真诚。",
+        hidden: {
+          keywords: ["松弛适应", "开放心态", "不设剧本"],
+          skill: "让关系在变化里继续保持呼吸",
+          mode: "各自赶路，碰面时自然靠近",
+          label: "随时能续上的旅伴"
+        },
+        slogan: "真正的同行，不一定要一直并肩。"
+      },
+      {
+        id: "bonfire",
+        main: false,
+        name: "篝火型旅伴",
+        stamp: "火",
+        keyword: "友情回声角色",
+        accent: "#d29c62",
+        vector: { express: 0.24, empathy: 0.20, steady: 0.10, boundary: 0.04, spark: 0.28, reflect: 0.02, loyal: 0.08, adapt: 0.04 },
+        description: "你很会把一次普通见面变成值得记住的夜晚。朋友靠近你，会感到关系重新有了温度和行动力。",
+        hidden: {
+          keywords: ["点亮气氛", "热情回应", "当下去做"],
+          skill: "让重要的人感觉自己被欢迎",
+          mode: "先让气氛暖起来，再认真听每个人说话",
+          label: "聚会里的篝火"
+        },
+        slogan: "今晚先见面，很多心事可以在路上慢慢说。"
+      },
+      {
+        id: "postcard",
+        main: false,
+        name: "明信片型旅伴",
+        stamp: "信",
+        keyword: "友情回声角色",
+        accent: "#a79bc4",
+        vector: { express: 0.06, empathy: 0.18, steady: 0.10, boundary: 0.14, spark: 0.04, reflect: 0.24, loyal: 0.22, adapt: 0.02 },
+        description: "你习惯把感情写进细节里。也许不常把想念挂在嘴边，但那些被记住的瞬间，会替你说很久。",
+        hidden: {
+          keywords: ["慢慢记得", "安静长情", "细节收藏"],
+          skill: "把普通日子写成以后会想起的片段",
+          mode: "不急着表达，但会认真保存",
+          label: "友情档案管理员"
+        },
+        slogan: "有些想念不用催，它会在心里慢慢写完。"
+      },
+      {
+        id: "nightwatch",
+        main: false,
+        name: "守夜型旅伴",
+        stamp: "夜",
+        keyword: "友情回声角色",
+        accent: "#8299ad",
+        vector: { express: 0.06, empathy: 0.26, steady: 0.28, boundary: 0.12, spark: 0.02, reflect: 0.10, loyal: 0.14, adapt: 0.02 },
+        description: "你不一定总在消息列表最上面，但朋友真正需要的时候，你往往会出现在旁边。你的陪伴安静，却很稳。",
+        hidden: {
+          keywords: ["稳定出现", "耐心倾听", "不抢风头"],
+          skill: "把“我在”变成让人安心的行动",
+          mode: "先陪对方走过情绪，再一起想办法",
+          label: "深夜还亮着的那盏灯"
+        },
+        slogan: "你不用马上振作，我会先把灯留着。"
+      },
+      {
+        id: "distantmountain",
+        main: false,
+        name: "远山型旅伴",
+        stamp: "山",
+        keyword: "友情回声角色",
+        accent: "#7f9a9b",
+        vector: { express: 0.04, empathy: 0.12, steady: 0.10, boundary: 0.28, spark: 0.04, reflect: 0.20, loyal: 0.08, adapt: 0.14 },
+        description: "你尊重关系里的距离，也接受每个人都在变化。你的自在让人放松，因为靠近你不需要表演。",
+        hidden: {
+          keywords: ["留白高手", "尊重变化", "独处充电"],
+          skill: "让关系在没有压力的时候自然靠近",
+          mode: "各自走一段，再在合适的时候并肩",
+          label: "可以远远看见的山"
+        },
+        slogan: "关系不必时时在线，想见时山还在。"
+      }
+    ];
+
+    const state = {
+      index: 0,
+      answers: new Array(questions.length).fill(null),
+      result: null
+    };
+
+    const homeScreen = document.getElementById("homeScreen");
+    const quizScreen = document.getElementById("quizScreen");
+    const resultScreen = document.getElementById("resultScreen");
+    const startButton = document.getElementById("startButton");
+    const progressCurrent = document.getElementById("progressCurrent");
+    const progressFill = document.getElementById("progressFill");
+    const routeCurrent = document.getElementById("routeCurrent");
+    const questionCounter = document.getElementById("questionCounter");
+    const questionCard = document.getElementById("questionCard");
+    const questionTitle = document.getElementById("questionTitle");
+    const optionsContainer = document.getElementById("options");
+    const previousButton = document.getElementById("previousButton");
+    const nextButton = document.getElementById("nextButton");
+    const nextButtonLabel = document.getElementById("nextButtonLabel");
+    const restartButton = document.getElementById("restartButton");
+    const saveButton = document.getElementById("saveButton");
+    const shareButton = document.getElementById("shareButton");
+    const toast = document.getElementById("toast");
+    const liveRegion = document.getElementById("liveRegion");
+    let toastTimer = null;
+
+    function pad(number) {
+      return String(number).padStart(2, "0");
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("is-visible");
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2400);
+    }
+
+    function showScreen(screen) {
+      [homeScreen, quizScreen, resultScreen].forEach((item) => {
+        item.hidden = item !== screen;
+        item.classList.remove("is-entering");
+      });
+      void screen.offsetWidth;
+      screen.classList.add("is-entering");
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    function startQuiz() {
+      state.index = 0;
+      state.answers = new Array(questions.length).fill(null);
+      state.result = null;
+      showScreen(quizScreen);
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const question = questions[state.index];
+      const selected = state.answers[state.index];
+      const current = state.index + 1;
+
+      progressCurrent.textContent = pad(current);
+      routeCurrent.textContent = pad(current);
+      questionCounter.textContent = `第 ${current} 题`;
+      progressFill.style.width = `${(current / questions.length) * 100}%`;
+      questionTitle.textContent = question.q;
+      previousButton.disabled = state.index === 0;
+      nextButton.disabled = selected === null;
+      nextButtonLabel.textContent = state.index === questions.length - 1 ? "解锁我的专属人物" : "下一题";
+
+      optionsContainer.replaceChildren();
+      question.a.forEach((option, optionIndex) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "option-button";
+        button.setAttribute("aria-pressed", String(selected === optionIndex));
+        if (selected === optionIndex) button.classList.add("is-selected");
+        button.innerHTML = `
+          <span class="option-letter" aria-hidden="true">${String.fromCharCode(65 + optionIndex)}</span>
+          <span class="option-text">${option[0]}</span>
+          <span class="option-check" aria-hidden="true"></span>
+        `;
+        button.addEventListener("click", () => selectOption(optionIndex));
+        optionsContainer.appendChild(button);
+      });
+
+      questionCard.classList.remove("swap");
+      void questionCard.offsetWidth;
+      questionCard.classList.add("swap");
+    }
+
+    function selectOption(optionIndex) {
+      state.answers[state.index] = optionIndex;
+      [...optionsContainer.children].forEach((button, index) => {
+        button.classList.toggle("is-selected", index === optionIndex);
+        button.setAttribute("aria-pressed", String(index === optionIndex));
+      });
+      nextButton.disabled = false;
+    }
+
+    previousButton.addEventListener("click", () => {
+      if (state.index > 0) {
+        state.index -= 1;
+        renderQuestion();
+      }
+    });
+
+    nextButton.addEventListener("click", () => {
+      if (state.answers[state.index] === null) return;
+      if (state.index === questions.length - 1) {
+        renderResult();
+        return;
+      }
+      state.index += 1;
+      renderQuestion();
+    });
+
+    function calculateScores() {
+      const scores = Object.fromEntries(Object.keys(DIMENSIONS).map((key) => [key, 0]));
+      questions.forEach((question, questionIndex) => {
+        const answer = state.answers[questionIndex];
+        if (answer === null) return;
+        const option = question.a[answer];
+        scores[option[1]] += 2;
+        scores[option[2]] += 1;
+      });
+      return scores;
+    }
+
+    function standardizeScores(scores) {
+      return Object.fromEntries(
+        Object.keys(scores).map((key) => [
+          key,
+          (scores[key] - scoringBaseline[key].mean) / (scoringBaseline[key].sd || 1)
+        ])
+      );
+    }
+
+    function similarity(scores, vector) {
+      const scoreLength = Math.sqrt(Object.values(scores).reduce((sum, value) => sum + value ** 2, 0)) || 1;
+      const vectorValues = Object.values(vector);
+      const vectorMean = vectorValues.reduce((sum, value) => sum + value, 0) / vectorValues.length;
+      const centered = Object.fromEntries(
+        Object.entries(vector).map(([key, value]) => [key, value - vectorMean])
+      );
+      const vectorLength = Math.sqrt(Object.values(centered).reduce((sum, value) => sum + value ** 2, 0)) || 1;
+      return Object.keys(vector).reduce(
+        (sum, key) => sum + (scores[key] / scoreLength) * (centered[key] / vectorLength),
+        0
+      );
+    }
+
+    function computeResult() {
+      const rawScores = calculateScores();
+      const standardized = standardizeScores(rawScores);
+      const mainProfiles = profiles
+        .filter((profile) => profile.main)
+        .map((profile) => ({ profile, score: similarity(standardized, profile.vector) }))
+        .sort((a, b) => b.score - a.score);
+      const echoProfiles = profiles
+        .filter((profile) => !profile.main)
+        .map((profile) => ({ profile, score: similarity(standardized, profile.vector) }))
+        .sort((a, b) => b.score - a.score);
+      const gap = mainProfiles[0].score - mainProfiles[1].score;
+      const compatibility = Math.min(98, Math.max(89, Math.round(87 + gap * 120)));
+      const topDimensions = Object.entries(standardized)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3);
+
+      return {
+        profile: mainProfiles[0].profile,
+        echo: echoProfiles[0].profile,
+        rawScores,
+        topDimensions,
+        compatibility
+      };
+    }
+
+    const hairShapes = {
+      bob: `<path d="M174 236c0-48 34-84 81-84s81 36 81 84c0 33-11 59-17 76h-28c7-24 8-56 2-77-25 3-56-4-79-18-8 20-8 59 1 95h-30c-8-24-11-48-11-76Z" fill="#334753"/>`,
+      soft: `<path d="M179 240c0-52 32-91 76-91s76 39 76 91c0 38-8 65-20 87h-22c12-30 14-69 7-94-26 10-57 12-86 2-13 26-13 65-3 92h-21c-12-24-7-54-7-87Z" fill="#465b63"/>`,
+      wave: `<path d="M172 242c0-54 38-94 83-94s83 40 83 94c0 37-10 66-23 89h-23c16-28 20-66 14-91-27 13-65 11-96-5-15 22-21 60-8 96h-24c-17-27-6-59-6-89Z" fill="#4c3d3b"/>`,
+      bright: `<path d="M177 237c0-49 34-86 78-86s78 37 78 86c0 31-8 55-18 75h-22c8-17 13-37 13-57-20-5-42-18-54-35-18 17-38 28-53 34-1 25 4 43 12 58h-22c-9-20-12-45-12-75Z" fill="#3f525b"/>`,
+      long: `<path d="M169 236c0-55 37-91 86-91s86 36 86 91c0 38-9 69-23 96l-34 50h-27l35-75c1-31-2-57-9-76-27 12-61 13-91 1-8 27-10 54-4 82l33 68h-28l-34-57c-13-26 10-66 10-89Z" fill="#443d47"/>`,
+      hood: `<path d="M172 248c-8-58 27-103 83-103s91 45 83 103c-5 39-20 69-36 85h-25c18-26 27-61 21-92-27 11-62 10-90-3-9 30-4 67 14 95h-26c-15-18-20-47-24-85Z" fill="#405660"/><path d="M158 311c23-14 47-22 49-55 2-20 21-36 46-36s44 16 46 36c2 33 26 41 49 55l-17 28c-27-9-49-25-59-48h-38c-10 23-32 39-59 48Z" fill="#78909d" opacity=".85"/>`,
+      free: `<path d="M174 238c0-50 34-87 81-87s81 37 81 87c0 37-14 63-27 83h-20c12-25 17-55 13-77-22 8-49 7-73-2-17 17-23 44-17 79h-22c-10-21-16-50-16-83Z" fill="#4c4b43"/>`
+    };
+
+    function portraitSvg(profile) {
+      const gradientId = `portrait-${profile.id}`;
+      const glowId = `glow-${profile.id}`;
+      return `
+        <svg viewBox="0 0 360 430" role="img" aria-label="${profile.name}原创旅行人物插画">
+          <defs>
+            <linearGradient id="${gradientId}" x1="0" y1="0" x2="0.8" y2="1">
+              <stop offset="0" stop-color="#edf3f6"/>
+              <stop offset="0.62" stop-color="${profile.accent}" stop-opacity=".34"/>
+              <stop offset="1" stop-color="#e9e3f0"/>
+            </linearGradient>
+            <radialGradient id="${glowId}" cx="50%" cy="50%" r="50%">
+              <stop offset="0" stop-color="#f2d39c" stop-opacity=".72"/>
+              <stop offset="1" stop-color="#f2d39c" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="360" height="430" fill="url(#${gradientId})"/>
+          <circle cx="280" cy="84" r="76" fill="url(#${glowId})"/>
+          <circle cx="280" cy="84" r="37" fill="#f5dfb3" opacity=".76"/>
+          <g fill="#fffdf8" opacity=".82">
+            <circle cx="51" cy="54" r="1.8"/>
+            <circle cx="90" cy="92" r="1.4"/>
+            <circle cx="161" cy="38" r="1.6"/>
+            <circle cx="220" cy="67" r="1.2"/>
+            <circle cx="324" cy="45" r="1.5"/>
+          </g>
+          <path d="M0 280 75 176l51 68 67-126 92 166 38-53 37 48v151H0Z" fill="${profile.accent}" opacity=".18"/>
+          <path d="M0 322 74 238l48 52 67-99 90 137 43-55 38 32v125H0Z" fill="${profile.accent}" opacity=".34"/>
+          <path d="M0 367c66-45 137-38 203-4 62 32 119 24 157 4v63H0Z" fill="#f5f0e5"/>
+          <path d="M58 430c9-94 43-142 73-167" fill="none" stroke="#fffdf8" stroke-width="8" stroke-linecap="round" opacity=".86"/>
+          <path d="M178 430c-2-72 2-125 8-165" fill="none" stroke="#fffdf8" stroke-width="7" stroke-linecap="round" opacity=".36"/>
+          <ellipse cx="183" cy="384" rx="92" ry="66" fill="#2d4653" opacity=".08"/>
+          <path d="M111 430c4-87 34-142 72-142s68 55 72 142Z" fill="${profile.accent}"/>
+          <path d="M128 430c4-62 22-106 46-122l18 31 18-31c24 16 42 60 46 122Z" fill="#fffdf8" opacity=".66"/>
+          <path d="M155 269h56v38c-8 17-20 26-28 26s-20-9-28-26Z" fill="#e8c8b3"/>
+          <circle cx="183" cy="238" r="53" fill="#eccbb6"/>
+          ${hairShapes[profile.portraitVariant] || hairShapes.soft}
+          <path d="M157 294c18 12 34 13 52 0l9 20c-25 17-45 17-70 0Z" fill="#f6f1e8" opacity=".9"/>
+          <path d="M133 343c19 10 33 16 50 16s31-6 50-16" fill="none" stroke="#c49a5b" stroke-width="2" opacity=".6"/>
+          <g transform="translate(24 330) rotate(-7)">
+            <rect width="79" height="55" rx="3" fill="#fffdf8" opacity=".86"/>
+            <path d="M13 16h53M13 28h39M13 40h30" stroke="#9aadb8" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="64" cy="40" r="7" fill="${profile.accent}" opacity=".55"/>
+          </g>
+          <path d="M18 36h56" stroke="#6d8798" stroke-width="2" opacity=".5"/>
+          <path d="M18 44h31" stroke="#6d8798" stroke-width="2" opacity=".35"/>
+        </svg>
+      `;
+    }
+
+    function renderResult() {
+      state.result = computeResult();
+      const { profile, echo, topDimensions, compatibility } = state.result;
+      const tags = [
+        ...topDimensions.map(([key]) => DIMENSIONS[key].label),
+        ...profile.hidden.keywords.slice(0, 2)
+      ];
+      const hiddenFields = [
+        ["友情关键词", profile.hidden.keywords.join(" · ")],
+        ["隐藏技能", profile.hidden.skill],
+        ["相处模式", profile.hidden.mode],
+        ["专属标签", profile.hidden.label]
+      ];
+
+      document.getElementById("resultFile").textContent = `JOURNEY FILE · ${profile.file}`;
+      document.getElementById("resultName").textContent = profile.name;
+      document.getElementById("resultKeyword").textContent = profile.keyword;
+      document.getElementById("resultIdentity").textContent = profile.identity;
+      document.getElementById("whyText").textContent = profile.why;
+      document.getElementById("hiddenIntro").textContent = `你的友情并不是单一标签，而是几种能力同时发生。它们组成了你在关系中的自然反应。`;
+      document.getElementById("echoName").textContent = echo.name;
+      document.getElementById("echoDescription").textContent = `${echo.description} ${echo.hidden.label}，是这次旅程里悄悄和你同频的另一个侧面。`;
+      document.getElementById("sloganText").textContent = profile.slogan;
+      document.getElementById("matchScore").textContent = `${compatibility}%`;
+      document.getElementById("portraitArt").innerHTML = portraitSvg(profile);
+      document.getElementById("portraitStamp").textContent = profile.stamp;
+
+      const tagsContainer = document.getElementById("resultTags");
+      tagsContainer.replaceChildren();
+      [...new Set(tags)].forEach((tag) => {
+        const span = document.createElement("span");
+        span.className = "result-tag";
+        span.textContent = tag;
+        tagsContainer.appendChild(span);
+      });
+
+      const hiddenGrid = document.getElementById("hiddenGrid");
+      hiddenGrid.replaceChildren();
+      hiddenFields.forEach(([label, value]) => {
+        const cell = document.createElement("div");
+        cell.className = "hidden-cell";
+        cell.innerHTML = `<span>${label}</span><strong>${value}</strong>`;
+        hiddenGrid.appendChild(cell);
+      });
+
+      liveRegion.textContent = `你的本命人物是${profile.name}，友情关键词是${profile.keyword}。${profile.slogan}`;
+      showScreen(resultScreen);
+    }
+
+    function roundedRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+    }
+
+    function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 99) {
+      const chars = Array.from(text);
+      let line = "";
+      let currentLine = 0;
+      for (let index = 0; index < chars.length; index += 1) {
+        const test = line + chars[index];
+        if (ctx.measureText(test).width > maxWidth && line) {
+          currentLine += 1;
+          if (currentLine >= maxLines) {
+            let shortened = line;
+            while (shortened && ctx.measureText(`${shortened}…`).width > maxWidth) {
+              shortened = shortened.slice(0, -1);
+            }
+            ctx.fillText(`${shortened}…`, x, y);
+            return y + lineHeight;
+          }
+          ctx.fillText(line, x, y);
+          line = chars[index];
+          y += lineHeight;
+        } else {
+          line = test;
+        }
+      }
+      if (line) ctx.fillText(line, x, y);
+      return y + lineHeight;
+    }
+
+    function createResultCanvas() {
+      if (!state.result) return null;
+      const { profile, echo, compatibility } = state.result;
+      const canvas = document.createElement("canvas");
+      canvas.width = 1080;
+      canvas.height = 1440;
+      const ctx = canvas.getContext("2d");
+
+      const sky = ctx.createLinearGradient(0, 0, 1080, 560);
+      sky.addColorStop(0, "#eef4f7");
+      sky.addColorStop(0.56, "#c8d9e6");
+      sky.addColorStop(1, "#e9e3f0");
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, 1080, 1440);
+
+      ctx.fillStyle = "rgba(245, 223, 179, 0.85)";
+      ctx.beginPath();
+      ctx.arc(842, 158, 85, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = "rgba(255, 253, 248, 0.86)";
+      [[140, 92, 3], [263, 146, 2], [386, 72, 2.5], [641, 104, 2], [946, 96, 3], [1004, 218, 2]].forEach(([x, y, r]) => {
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      ctx.fillStyle = "rgba(104, 134, 158, 0.33)";
+      ctx.beginPath();
+      ctx.moveTo(0, 430);
+      ctx.lineTo(178, 240);
+      ctx.lineTo(310, 402);
+      ctx.lineTo(472, 204);
+      ctx.lineTo(681, 446);
+      ctx.lineTo(820, 298);
+      ctx.lineTo(1080, 458);
+      ctx.lineTo(1080, 620);
+      ctx.lineTo(0, 620);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.fillStyle = "rgba(66, 95, 117, 0.5)";
+      ctx.beginPath();
+      ctx.moveTo(0, 500);
+      ctx.lineTo(198, 328);
+      ctx.lineTo(360, 486);
+      ctx.lineTo(520, 292);
+      ctx.lineTo(732, 518);
+      ctx.lineTo(886, 370);
+      ctx.lineTo(1080, 488);
+      ctx.lineTo(1080, 660);
+      ctx.lineTo(0, 660);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.save();
+      ctx.shadowColor = "rgba(54, 70, 82, 0.14)";
+      ctx.shadowBlur = 50;
+      ctx.shadowOffsetY = 20;
+      ctx.fillStyle = "#fffdf8";
+      roundedRect(ctx, 58, 210, 964, 1165, 24);
+      ctx.fill();
+      ctx.restore();
+
+      ctx.fillStyle = profile.accent;
+      roundedRect(ctx, 58, 210, 14, 1165, 7);
+      ctx.fill();
+
+      ctx.fillStyle = "#849099";
+      ctx.font = '600 20px "PingFang SC", "Microsoft YaHei", sans-serif';
+      ctx.fillText("后会友期 · FRIENDSHIP JOURNEY FILE", 106, 260);
+      ctx.fillStyle = "#c69a58";
+      ctx.fillText(`NO. ${profile.file}`, 842, 260);
+
+      ctx.fillStyle = "#263641";
+      ctx.font = '500 68px "Songti SC", "STSong", serif';
+      ctx.fillText(`原来，你像 ${profile.name}`, 106, 328);
+      ctx.fillStyle = "#53636e";
+      ctx.font = '500 28px "Songti SC", "STSong", serif';
+      ctx.fillText(profile.keyword, 108, 384);
+      ctx.fillStyle = "#849099";
+      ctx.font = '18px "PingFang SC", "Microsoft YaHei", sans-serif';
+      ctx.fillText(`友情频率相近 ${compatibility}%`, 108, 424);
+
+      ctx.fillStyle = "#53636e";
+      ctx.font = '24px "PingFang SC", "Microsoft YaHei", sans-serif';
+      wrapCanvasText(ctx, profile.identity, 108, 464, 850, 38, 3);
+
+      ctx.strokeStyle = "rgba(38, 54, 65, 0.14)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(108, 575);
+      ctx.lineTo(972, 575);
+      ctx.stroke();
+
+      ctx.fillStyle = "#c69a58";
+      ctx.font = '600 18px "PingFang SC", "Microsoft YaHei", sans-serif';
+      ctx.fillText("01 / 为什么是你", 108, 615);
+      ctx.fillStyle = "#40515d";
+      ctx.font = '24px "PingFang SC", "Microsoft YaHei", sans-serif';
+      let y = wrapCanvasText(ctx, profile.why, 108, 658, 850, 38, 5);
+
+      y = Math.max(y + 28, 835);
+      ctx.strokeStyle = "rgba(38, 54, 65, 0.14)";
+      ctx.beginPath();
+      ctx.moveTo(108, y);
+      ctx.lineTo(972, y);
+      ctx.stroke();
+      y += 42;
+
+      ctx.fillStyle = "#c69a58";
+      ctx.font = '600 18px "PingFang SC", "Microsoft YaHei", sans-serif';
+      ctx.fillText("02 / 友情隐藏属性", 108, y);
+      y += 46;
+      ctx.fillStyle = "#40515d";
+      ctx.font = '23px "PingFang SC", "Microsoft YaHei", sans-serif';
+      ctx.fillText(`关键词：${profile.hidden.keywords.join(" · ")}`, 108, y);
+      y += 38;
+      y = wrapCanvasText(ctx, `隐藏技能：${profile.hidden.skill}`, 108, y, 850, 36, 2);
+      y = wrapCanvasText(ctx, `相处模式：${profile.hidden.mode}`, 108, y, 850, 36, 2);
+      ctx.fillStyle = "#53636e";
+      ctx.font = '500 22px "Songti SC", "STSong", serif';
+      ctx.fillText(`专属标签：${profile.hidden.label}`, 108, y + 5);
+
+      y += 66;
+      ctx.fillStyle = "rgba(233, 228, 241, 0.9)";
+      roundedRect(ctx, 108, y, 864, 118, 12);
+      ctx.fill();
+      ctx.fillStyle = "#7f7397";
+      ctx.font = '600 16px "PingFang SC", "Microsoft YaHei", sans-serif';
+      ctx.fillText("友情回声角色", 132, y + 26);
+      ctx.fillStyle = "#263641";
+      ctx.font = '500 28px "Songti SC", "STSong", serif';
+      ctx.fillText(echo.name, 132, y + 60);
+      ctx.fillStyle = "#53636e";
+      ctx.font = '18px "PingFang SC", "Microsoft YaHei", sans-serif';
+      wrapCanvasText(ctx, echo.description, 132, y + 92, 810, 25, 1);
+
+      y += 150;
+      ctx.fillStyle = "#f5efe3";
+      roundedRect(ctx, 108, y, 864, 98, 10);
+      ctx.fill();
+      ctx.fillStyle = "#c69a58";
+      ctx.font = '600 16px "PingFang SC", "Microsoft YaHei", sans-serif';
+      ctx.fillText("04 / SLOGAN", 132, y + 22);
+      ctx.fillStyle = "#263641";
+      ctx.font = '500 25px "Songti SC", "STSong", serif';
+      wrapCanvasText(ctx, profile.slogan, 132, y + 52, 805, 31, 2);
+
+      ctx.fillStyle = "#849099";
+      ctx.font = '15px "PingFang SC", "Microsoft YaHei", sans-serif';
+      ctx.fillText("趣味友情测试 · 非专业心理测评 · 结果仅用于娱乐与自我观察", 92, 1354);
+      ctx.textAlign = "right";
+      ctx.fillText("后会友期 · 友情旅程档案", 988, 1354);
+      ctx.textAlign = "left";
+
+      return canvas;
+    }
+
+    async function saveResultImage() {
+      try {
+        const canvas = createResultCanvas();
+        if (!canvas) return;
+        const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+        if (!blob) throw new Error("canvas_export_failed");
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `后会友期-${state.result.profile.name}.png`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1200);
+        showToast("结果图片已生成，正在保存");
+      } catch (error) {
+        showToast("图片生成失败，请稍后重试");
+      }
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (error) {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        textarea.remove();
+      }
+    }
+
+    async function shareResult() {
+      if (!state.result) return;
+      const { profile } = state.result;
+      const shareUrl = /^https?:$/.test(window.location.protocol) ? window.location.href : "";
+      const text = `我在《后会友期》友情测试里对应的是「${profile.name}」：${profile.slogan}${shareUrl ? `\n${shareUrl}` : ""}`;
+      if (navigator.share && /^https?:$/.test(window.location.protocol)) {
+        try {
+          await navigator.share({
+            title: "测一测｜你是《后会友期》里的谁？",
+            text,
+            url: shareUrl
+          });
+          return;
+        } catch (error) {
+          if (error && error.name === "AbortError") return;
+        }
+      }
+      await copyText(text);
+      showToast("分享文案已复制");
+    }
+
+    startButton.addEventListener("click", startQuiz);
+    restartButton.addEventListener("click", startQuiz);
+    saveButton.addEventListener("click", saveResultImage);
+    shareButton.addEventListener("click", shareResult);
+  </script>
+</body>
+</html>
